@@ -9,10 +9,11 @@
 // @grant        none
 // ==/UserScript==
 
-function run(answers){
+async function run(answers){
     console.log(answers);
     for(let i = 0; i < answers.length; i++){
         document.querySelector('#txt-answer-box').value = answers[i].join(' ');
+        await sleep(1);
         document.querySelector('#txt-answer-box').dispatchEvent(new KeyboardEvent('input'))
     }
 }
@@ -26,3 +27,8 @@ function run(answers){
     }
     document.querySelector('#start-button').onclick = function () {run(answers)};
 })();
+
+
+const sleep = (milliseconds) => {
+  return new Promise(resolve => setTimeout(resolve, milliseconds))
+}
